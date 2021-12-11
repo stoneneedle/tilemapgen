@@ -1,18 +1,10 @@
-// Although we'll start by thinking about 2D square tilemaps, ultimately this is going to be run on
-// a 2D hexagonal tilemap. We start with 0 = "OCEAN" = the color blue
-// our goal is to populate it with some land hexes, via some terrain generation algorithm (Perlin noise?)
-// 1 = "LAND" = the color green
-
-// ... or ...
-
-// Now that I know more about what Perlin noise is ...
-
 // The hex tile map will use 2D Perlin noise to calculate an elevation value for each hex tile,
 // determining whether the tile is OCEAN/LAKE, COAST, PLAINS/HILLS, or MOUNTAINS
 
-// Hexagonal grid of tiles
+// var p = require('./joeperlin/perlin'); // Joe's Perlin implementation
+var p = require('./min.perlin'); // Stefan's Perlin implementation (Minified)
 
-var p = require('./perlin/perlin');
+p.noise.seed(Math.random());
 
 class HexTileMap {
   constructor(width=5, height=5) {
@@ -48,7 +40,7 @@ class HexTileMap {
         var xp = parseFloat(x / 10);
         var yp = parseFloat(y / 10);
         // console.log("(" + x + "," + y + ") => " + p.perlin.get(xp, yp));
-        row.push(p.perlin.get(xp, yp));
+        row.push(p.noise.perlin2(xp, yp));
       }
       map.push(row);
     }
