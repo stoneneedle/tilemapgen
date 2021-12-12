@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Hexgrid UI</title>
+  
+</head>
+<body>
+  <p>Hexgrid UI Display</p>
+  <script type="text/javascript">
+    const api_base = 'http://localhost:3001';
+
+    const getTest = 
+      fetch(api_base + '/test')
+        .then(res => res.json())
+        .then(data => console.log(data))
+			  .catch((err) => console.error("Error: ", err));
+
+    
+
+  </script>
+</body>
+</html>

@@ -59,13 +59,13 @@ class HexTileMap {
         var currentTile = this.elevation[x][y];
         if(currentTile < 0) {
           // outStr += OCEAN + currentTile.toPrecision(3) + " "; // Debug Perlin values
-          outStr += OCEAN + " ~ ";
+          outStr += " ~ ";
         } else if(currentTile > 0.4) {
           // outStr += MTNS + currentTile.toPrecision(3) + " "; // Debug Perlin values
-          outStr += MTNS + " ^ ";
+          outStr += " ^ ";
         } else {
           // outStr += PLAINS + currentTile.toPrecision(3) + " "; // Debug Perlin values
-          outStr += PLAINS + " + ";
+          outStr += " + ";
         }
       }
       outStr += "\n";
@@ -81,13 +81,13 @@ class HexTileMap {
         var currentTile = this.simplexElevation[x][y];
         if(currentTile < 0) {
           // outStr += OCEAN + currentTile.toPrecision(3) + " "; // Debug Perlin values
-          outStr += OCEAN + " ~ ";
+          outStr += " ~ ";
         } else if(currentTile > 0.4) {
           // outStr += MTNS + currentTile.toPrecision(3) + " "; // Debug Perlin values
-          outStr += MTNS + " ^ ";
+          outStr += " ^ ";
         } else {
           // outStr += PLAINS + currentTile.toPrecision(3) + " "; // Debug Perlin values
-          outStr += PLAINS + " + ";
+          outStr += " + ";
         }
       }
       outStr += "\n";
@@ -96,5 +96,7 @@ class HexTileMap {
   }
 }
 
-tm = new HexTileMap(40, 40);
-console.log(tm.toStringSimplex());
+// tm = new HexTileMap(40, 40);
+// console.log(tm.toStringSimplex());
+
+module.exports = HexTileMap;
