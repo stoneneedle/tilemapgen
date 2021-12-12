@@ -1,0 +1,22 @@
+{
+  "name": "tilemapgen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "min.perlin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stoneneedle/tilemapgen.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stoneneedle/tilemapgen/issues"
+  },
+  "homepage": "https://github.com/stoneneedle/tilemapgen#readme",
+  "dependencies": {
+    "browserify": "^17.0.0"
+  }
+}

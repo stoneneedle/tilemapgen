@@ -1,10 +1,13 @@
 // The hex tile map will use 2D Perlin noise to calculate an elevation value for each hex tile,
 // determining whether the tile is OCEAN/LAKE, COAST, PLAINS/HILLS, or MOUNTAINS
 
-// var p = require('./joeperlin/perlin'); // Joe's Perlin implementation
 var p = require('./min.perlin'); // Stefan's Perlin implementation (Minified)
 
 p.noise.seed(Math.random());
+
+var BLUE = OCEAN = "\033[0;34m"; // console blue
+var LTGREEN = PLAINS = "\033[1;32m"; // console light green
+var BROWN = MTNS = "\033[0;33m"; // console brown/orange
 
 class HexTileMap {
   constructor(width=5, height=5) {
@@ -46,39 +49,32 @@ class HexTileMap {
     }
     return map;
   }
-}
 
-var coolMap = new HexTileMap(40, 40);
+  toString() {
+    var outStr = "";
 
-var outStr = "";
-
-var BLUE = OCEAN = "\033[0;34m"; // console blue
-var LTGREEN = PLAINS = "\033[1;32m"; // console light green
-var BROWN = MTNS = "\033[0;33m"; // console brown/orange
-
-for(var y = 0; y < coolMap.height; y++) {
-  for(var x = 0; x < coolMap.width; x++) {
-    var currentTile = coolMap.elevation[x][y];
-    if(currentTile < 0) {
-      // outStr += BLUE + "OCEAN";
-      // outStr += OCEAN + coolMap.elevation[x][y].toPrecision(3) + " ";
-      outStr += OCEAN + " ~ ";
-    } else if(currentTile > 0.4) {
-      // outStr += LTGREEN + "LAND";
-      // outStr += MTNS + coolMap.elevation[x][y].toPrecision(3) + " ";
-      outStr += MTNS + " ^ ";
-    } else {
-      // outStr += PLAINS + coolMap.elevation[x][y].toPrecision(3) + " ";
-      outStr += PLAINS + " + ";
+    for(var y = 0; y < this.height; y++) {
+      for(var x = 0; x < this.width; x++) {
+        var currentTile = this.elevation[x][y];
+        if(currentTile < 0) {
+          // outStr += OCEAN + coolMap.elevation[x][y].toPrecision(3) + " "; // Debug Perlin values
+          outStr += OCEAN + " ~ ";
+        } else if(currentTile > 0.4) {
+          // outStr += MTNS + coolMap.elevation[x][y].toPrecision(3) + " "; // Debug Perlin values
+          outStr += MTNS + " ^ ";
+        } else {
+          // outStr += PLAINS + coolMap.elevation[x][y].toPrecision(3) + " "; // Debug Perlin values
+          outStr += PLAINS + " + ";
+        }
+      }
+      outStr += "\n";
     }
+    return outStr;
   }
-  outStr += "\n";
 }
 
-console.log(outStr);
-
-// console.log(coolMap.elevation);
-// console.log("\033[0;31mHELLO");
+// var coolMap = new HexTileMap(40, 40);
+// console.log(coolMap.toString());
 
 // ANSI Escape Code Colors
 
@@ -90,3 +86,6 @@ console.log(outStr);
 // Purple       0;35     Light Purple  1;35
 // Cyan         0;36     Light Cyan    1;36
 // Light Gray   0;37     White         1;37
+
+//export default HexTileMap;
+module.exports = HexTileMap;
